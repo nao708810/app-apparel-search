@@ -4889,6 +4889,7 @@ input[type="button"].btn-block {
   margin-bottom: 2rem;
   background-color: #e9ecef;
   border-radius: 0.3rem;
+  background-image: url("../assets/img/apparel.jpg");
 }
 
 @media (min-width: 576px) {
