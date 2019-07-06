@@ -4,21 +4,21 @@ Controller
 
 import os
 from flask import request, redirect, url_for, render_template, session
-from flaskapp import app
+from apparel import app
 
 #Mainルート
 @app.route('/')
 def start():
     """初期化後にsampleページに遷移"""
     init()
-    return redirect(url_for('sample'))
+    return redirect(url_for('upload'))
 
 #Sample Start
-@app.route('/sample', methods=['GET', 'POST'])
-def sample():
-    """サンプルページを表示"""
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    """画像アップロードページを表示"""
 
-    return render_template('sample.html')
+    return render_template('upload.html')
 
 #初期化用
 def init():

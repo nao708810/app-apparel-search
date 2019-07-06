@@ -3,7 +3,7 @@ Flaskアプリケーションの起動エンドポイント
 """
 from __future__ import print_function
 from flask_bootstrap import Bootstrap
-from flaskapp import app
+from apparel import app
 from flask_session import Session
 
 #Session
