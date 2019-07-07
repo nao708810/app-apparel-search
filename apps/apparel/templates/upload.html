@@ -2,20 +2,44 @@
 {% block content %}
 
 <div class="container">
-    <div class="row">
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile02">
-                    <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
-                </div>
-                    <div class="input-group-append">
-                    <span class="input-group-text" id="">Upload</span>
-                </div>
+    <div class="col">
+        <div class="text-info">
+            <h1>画像UpLoad</h1><br>
+        </div>
+        <div style="max-width: 100%;" class="card border-info mb-3">
+            <div class="card-header text-primary">
+                <h3>サービス構成イメージ</h3>
+            </div>
+            <div class="card-header">
+                <img style="height: 100%; width: 100%; display: block;" src="..\static\assets\img\system-image.png" alt="xxx">
             </div>
         </div>
-        <h1>HTMLを触っていくイメージで触っていこう</h1>
+        <div class="text-info">
+            <br><h2>ユーザー操作</h2><br>
+        </div>
+        <div class="text-secondary">
+            <h3>・画像選択</h3>
+            <p>下部の'Choose File'ボタンを押下して、画像を選択してください</p><br>
+            <h3>・AI解析開始</h3>
+            <p>'AI解析開始'ボタンを押下して、画像のAI解析を開始します</p><br>
+            <h3>・結果の閲覧</h3>
+            <p>ページが遷移し、解析結果の表示と、検索URLのリンクを提示します</p><br>
+        </div>
+        <form id="upload" action="{{ url_for('upload') }}" method=post enctype="multipart/form-data">
+            <div class="imagePreview"></div>
+            <div class="input-group">
+                <label class="input-group-btn">
+                    <span class="btn btn-info">
+                        Choose File<input type="file" style="display:none" class="uploadFile" name="file">
+                    </span>
+                </label>
+                <input type="text" class="form-control" readonly="">
+            </div>
+            <button form="upload" type="submit" class="btn btn-primary btn-lg" name="submit" value="submit">AI解析開始</button>
+            <div class="text-danger">
+                <h3>{{ message }}</h3><br>
+            </div>
+        </form>
     </div>
 </div>
-
 {% endblock %}
