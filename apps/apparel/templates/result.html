@@ -6,27 +6,33 @@
 </div>
 <div class="container">
     <div class="col">
-        <div>
-            <h2><a href="{{ keyword }}" charset="shift-jis">検索サイトへジャンプ</a></h2>
-        </div>
-        </br>
-        <table class="table">
+        <h3>
+            適合率50%以上のキーワードが検索されます。</br></br>
+            ファイル名：{{session.filename}}</br>
+        </h3>
+        <table class="table table-hover">
             <tbody>
-                <tr>
-                    <h3>{{session.filename}}</h3>
-                </tr>
-                <tr>
+                <tr class="table-secondary">
                     <td><h3>予測キーワード</h3></td>
                     <td><h3>適合率</h3></td>
                 </tr>
                 {% for prediction in predictions %}
+                {% if prediction.probability > 50 %}
+                <tr class="table-success">
+                {% else %}
                 <tr>
+                {% endif %}
                     <td><h5>{{ prediction.tag_name }}</h5></td>
                     <td><h5>{{ prediction.probability }}%</h5></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        </br>
+        <div>
+            <h2><a href="{{ keyword }}" charset="shift-jis">検索サイトへジャンプ</a></h2>
+        </div>
+        </br>    
     </div>
 </div>
 {% endblock %}
