@@ -5,14 +5,24 @@
 {%- endblock title %}
 
 {% block meta -%}
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 {%- endblock meta %}
-
 
 {% block styles -%}
 <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="/static/assets/css/example.css">
+<style>
+.imagePreview {
+  width: 100%;
+  height: 500px;
+  background-position: center center;
+  background-size: cover;
+  -webkit-box-shadow: 0 0 3px 3px rgba(171, 151, 241, 0.322);
+  display: inline-block;
+}
+</style>
 {%- endblock styles %}
 
 {% block body %}
@@ -21,17 +31,16 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="./">
+      <a class="navbar-brand col" href="./">
         <h1>
           アパレルイメージ検索サービス
         </h1>
       </a>
     </div>
   </nav>
-  <div class="container">
-    <div class="jumbotron">
-      <div class="page-header" id="banner">
-      </div>
+  <div class="jumbotron">
+    <div class="page-header text-white" id="banner">
+      <h2>Apparel Search</h2>
     </div>
   </div>
 </header>
@@ -44,7 +53,25 @@ lauout
 {% block scripts -%}
 <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.5/clipboard.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
+
+<script>
+$(document).on('change', ':file', function() {
+    var input = $(this),
+    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.parent().parent().next(':text').val(label);
+
+    var files = !!this.files ? this.files : [];
+    if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+    if (/^image/.test( files[0].type)){ // only image file
+        var reader = new FileReader(); // instance of the FileReader
+        reader.readAsDataURL(files[0]); // read the local file
+        reader.onloadend = function(){ // set image data as background of div
+            input.parent().parent().parent().prev('.imagePreview').css("background-image", "url("+this.result+")");
+        }
+    }
+});
+</script>
 {%- endblock scripts %}
 <div class="container">
 <footer class="small">
