@@ -2,5 +2,5 @@ Flask
 Flask-bootstrap4
 pylint
 Flask-session
-azure-cosmosdb-table
 azure-cognitiveservices-vision-customvision
+azure-storage-blob

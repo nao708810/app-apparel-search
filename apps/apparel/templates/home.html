@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="text-info">
+    <h1>Home</h1><br>
+</div>
+<div class="container">
+    <div class="col">
+        <div style="max-width: 100%;" class="card border-info mb-3">
+            <div class="card-header text-primary">
+                <h3>サービス構成イメージ</h3>
+            </div>
+            <div class="card-header">
+                <img style="height: 100%; width: 100%; display: block;" src="..\static\assets\img\system-image.png" alt="xxx">
+            </div>
+        </div>
+        <div style="max-width: 100%;" class="card border-info mb-3">
+            <div class="card-header text-primary">
+                <h3>ユーザー操作</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-secondary">
+                    <h3>画像選択</h3></br>
+                </div>
+                <h5>'Choose File'ボタンを押下して、画像を選択してください</h5><br>
+                <div class="text-secondary">
+                    <h3>AI解析開始</h3></br>
+                </div>
+                <h5>'AI解析開始'ボタンを押下して、画像のAI解析を開始します</h5><br>
+                <div class="text-secondary">
+                    <h3>結果の閲覧</h3></br>
+                </div>
+                <h5>ページが遷移し、解析結果の表示と、検索URLのリンクを提示します</h5><br>
+            </div>
+        </div>
+        <div style="max-width: 100%;" class="card border-secondary mb-3">
+            <div class="card-header text-secondary">
+                <h3>バージョン情報</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-muto">
+                    <h3>2019/07/09 V1.0.0</h3>
+                    <p>分析AIレベル:園児</p><br>
+                    <p>学習済画像枚数：50枚</p><br>
+                    <p>検索可能word:Tシャツ、チェック、ボーダー、革ジャン、カットソー</p>
+                </div>
+            </div>
+        </div>
+        <form id="start" action="{{ url_for('start') }}" method=post enctype="multipart/form-data">
+            <button form="start" type="submit" class="btn btn-primary btn-lg">START</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

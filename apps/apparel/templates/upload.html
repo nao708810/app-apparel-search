@@ -1,30 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<div class="text-info">
+    <h1>画像UpLoad</h1><br>
+</div>
 <div class="container">
-    <div class="col">
-        <div class="text-info">
-            <h1>画像UpLoad</h1><br>
-        </div>
-        <div style="max-width: 100%;" class="card border-info mb-3">
-            <div class="card-header text-primary">
-                <h3>サービス構成イメージ</h3>
-            </div>
-            <div class="card-header">
-                <img style="height: 100%; width: 100%; display: block;" src="..\static\assets\img\system-image.png" alt="xxx">
-            </div>
-        </div>
-        <div class="text-info">
-            <br><h2>ユーザー操作</h2><br>
-        </div>
-        <div class="text-secondary">
-            <h3>・画像選択</h3>
-            <p>下部の'Choose File'ボタンを押下して、画像を選択してください</p><br>
-            <h3>・AI解析開始</h3>
-            <p>'AI解析開始'ボタンを押下して、画像のAI解析を開始します</p><br>
-            <h3>・結果の閲覧</h3>
-            <p>ページが遷移し、解析結果の表示と、検索URLのリンクを提示します</p><br>
-        </div>
+    <div class="col-9">
         <form id="upload" action="{{ url_for('upload') }}" method=post enctype="multipart/form-data">
             <div class="imagePreview"></div>
             <div class="input-group">

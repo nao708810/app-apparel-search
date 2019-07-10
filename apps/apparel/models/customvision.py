@@ -45,7 +45,7 @@ class Customvision():
         return ret_project
 
     #CustomVisionによる解析結果を走行データに格納して返却
-    def get_prediction(self, image_path):
+    def get_prediction(self, blob_url):
         """走行データリストに Custom Vision 解析結果を格納して返却
 
         Custom Vision ポータルでトレーニング済みの Project を検索。
@@ -56,19 +56,15 @@ class Customvision():
             blob_url (str): BlobコンテナへのアクセスURL
 
         Returns:
-            予測値5割を超える場合に解析結果を格納する。
-            予測値が5割以下の場合は"予測結果なし"を格納する。
-            引数の走行データを全件検索し終えると、
-            画像解析結果を格納した走行データリストを返却する。
-
         """
         #トレーニング済みの指定プロジェクト検索
         project = self._get_train_project()
-            
+
         #CustomVisionによるAI解析開始
         results = self.predictor.classify_image_url(project.id,\
-                self.publish_iteration_name, image_path)
-        #予測値が最大のオブジェクトを取得
-        prediction = max(results.predictions, key=lambda x: x.probability)
-        #予測値が5割を超える場合は予測結果として格納
-        return prediction
+                self.publish_iteration_name, blob_url)
+
+        #数値高い順に並び替え
+        predictions = sorted(results.predictions, key=lambda prob: prob.probability, reverse=True)
+
+        return predictions
