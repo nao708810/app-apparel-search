@@ -3,11 +3,17 @@ Config
 '''
 #Settingファイル
 SECRET_KEY = 'secretkey'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'gif'])
+UPLOAD_FOLDER = './apps/apparel/uploads'
 
 #STORAGE
 STORAGE_KEY = ""
 STORAGE_NAME = ""
 TABLE_NAME = ""
+
+#BLOB
+BLOB_NAME = ""
+BLOB_URL = "https://" +  STORAGE_NAME + ".blob.core.windows.net/" + BLOB_NAME + "/"
 
 #CUSTOM VISION
 TRAINING_KEY = ""
@@ -15,3 +21,6 @@ PREDICTION_KEY = ""
 ENDPOINT = ""
 VISION_PROJECT_NAME = ""
 PUBLISH_ITERATION_NAME = ""
+
+#URL(検索サイト固定)
+APPAREL_URL = "https://zozo.jp/search/?p_keyv="
